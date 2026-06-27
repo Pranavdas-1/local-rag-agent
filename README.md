@@ -25,3 +25,52 @@ runs entirely on your machine.
 | Language | Python |
 
 ## Project Structure
+├── main.py          # CLI loop, prompt chain, LLM inference
+
+├── vector.py        # Embedding, ChromaDB setup, retriever
+
+├── realistic_restaurant_reviews.csv
+
+└── chroma_langchain_db/   # Auto-generated on first run
+
+## Setup
+
+### Prerequisites
+- [Ollama](https://ollama.com/) installed and running
+- Python 3.9+
+
+### Install dependencies
+
+```bash
+pip install langchain langchain-ollama langchain-chroma chromadb pandas
+```
+
+### Pull required Ollama models
+
+```bash
+ollama pull llama3.2
+ollama pull mxbai-embed-large
+```
+
+### Run
+
+```bash
+python main.py
+```
+
+On first run, the vector database is built automatically from the CSV. 
+Subsequent runs load the existing database — no re-embedding needed.
+
+## Example
+Ask your question: What do people say about the pizza dough?
+Customers consistently praised the pizza dough for being well-fermented
+
+and crispy on the outside while remaining chewy inside...
+
+## Key Concepts Demonstrated
+
+- End-to-end RAG pipeline implementation
+- Local LLM inference with no external API dependency
+- Persistent vector storage with ChromaDB
+- Semantic retrieval using cosine similarity
+- Prompt design with hallucination guardrails
